@@ -75,11 +75,21 @@ For smaller GPUs, reduce batch size or image dimensions.
 
 ## Model Performance Summary
 
-After preprocessing (N4 bias correction + improved skull stripping), the model achieved:
+- **Accuracy:** 70%  
+- **Avg F1-Score:** 0.67  
+- **Recall (Dementia class):** 92%  
+- **Precision (Non-Dementia class):** 82%
 
-- **Accuracy:** ~73%  
-- **F1 Score:** ~70%  
-- **Recall (Dementia class):** ~92%  
-- **Precision (Non-Dementia class):** ~82%  
 
-Preprocessing improved performance significantly compared to raw images.
+| Class | Precision | Recall | F1-Score | Support |
+|-------|-----------|--------|----------|---------|
+| **Non-Dementia (0)** | 0.82 | 0.44 | 0.58 | 95 |
+| **Dementia (1)**     | 0.66 | 0.92 | 0.77 | 111 |
+
+### Interpretation
+
+- The model is highly sensitive to dementia (**92% recall**), meaning it correctly detects most dementia cases.  
+- Lower recall for non-dementia cases (**44%**) indicates a tendency toward false positives.  
+- Given the small MRI dataset and the difficulty of training 3D CNNs, an accuracy of **70%** demonstrates strong performance.  
+- Preprocessing steps (skull stripping, registration, and N4 bias correction) significantly contributed to these results.
+
